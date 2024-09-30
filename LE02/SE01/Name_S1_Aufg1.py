@@ -31,6 +31,8 @@ plt.plot(x, F_x, label='F(x)', color='green')
 plt.xlim(-10, 10)
 plt.ylim(-1600, 1600)
 
+#Hajir was here
+
 # Achsen beschriften
 plt.xlabel('x')
 plt.ylabel('Funktionswerte')
