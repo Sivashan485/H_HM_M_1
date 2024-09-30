@@ -1,43 +1,59 @@
-import numpy  as np
-import matplotlib.pyplot as  plt
+import numpy as np
 import timeit
 
-# Rekursive Fakultät
 def fact_rec(n):
     if n < 0 or np.trunc(n) != n:
         raise Exception('The factorial is defined only for positive integers')
     if n <= 1:
         return 1
-    else: 
-        return n * fact_rec(n-1)
-    
-# Fakultät mit einer For-Schleife
+    else:
+        return n * fact_rec(n - 1)
+
 def fact_for(n):
     result = 1
-    for  i in range(1, n + 1):
-        result *= 1
-        return result
+    for i in range(1, n + 1):
+        result *= i
+    return result
 
-
+# Vergleichen der Ausführungszeiten
 n = 500
-t1 = timeit.repeat("fact_rec({})".format(n), "from __main__ import fact_rec", number=100)
-t2 = timeit.repeat("fact_for({})".format(n), "from __main__ import fact_for", number=100)
+t1 = timeit.repeat("fact_rec(" + str(n) + ")", "from __main__ import fact_rec", number=100)
+t2 = timeit.repeat("fact_for(" + str(n) + ")", "from __main__ import fact_for", number=100)
 
+print("Durchschnittliche Ausführungszeit von fact_rec:", np.mean(t1))
+print("Durchschnittliche Ausführungszeit von fact_for:", np.mean(t2), "\n")
 
-print("Average execution time for fact_rec: {:.6f} seconds".format(np.mean(t1)))
-print("Average execution time for fact_for: {:.6f} seconds".format(np.mean(t2)))
+# Vergleich der Ausführungszeiten
+if np.mean(t1) < np.mean(t2):
+    print("Die Rekursive Funktion ist schneller als die nicht Rekursive Funktion um einen Faktor von", np.mean(t2) / np.mean(t1), "\n")
+else:
+    print("Die nicht Rekursive Funktion ist schneller als die Rekursive Funktion um einen Faktor von", np.mean(t1) / np.mean(t2), "\n")
 
-
-# Example: calculating the factorial of n ∈ [190, 200] as an integer
-for i in range(190, 201):
+# Überprüfung der oberen Grenze für die Fakultät als ganze Zahl
+print("Fakultät berechnet durch die Rekursive Funktion:")
+for n in range(190, 201):
     try:
-        print("Factorial of {}: {}".format(i, fact_rec(i)))
+        print("Fakultät von", n, "als ganze Zahl:", fact_rec(n))
     except OverflowError:
-        print("Factorial of {} is too large to be represented as an integer".format(i))
+        print("Fakultät von", n, "überschreitet die obere Grenze für ganze Zahlen")
 
-# Example: calculating the factorial of n ∈ [170, 171] as a float
-for i in range(170, 172):
+# Überprüfung der oberen Grenze für die Fakultät als ganze Zahl
+print("Fakultät berechnet durch die nicht Rekursive Funktion: ")
+for n in range(190, 201):
     try:
-        print("Factorial of {}: {}".format(i, fact_for(i)))
+        print("Fakultät von", n, "als ganze Zahl:", fact_for(n))
     except OverflowError:
-        print("Factorial of {} is too large to be represented as a float".format(i))
+        print("Fakultät von", n, "überschreitet die obere Grenze für ganze Zahlen")
+        
+# Überprüfung der oberen Grenze für die Fakultät als reelle Zahl
+for n in range(170, 172):
+    try:
+        print("Fakultät von", n, "als reelle Zahl:", fact_rec(n))
+    except OverflowError:
+        print("Fakultät von", n, "überschreitet die obere Grenze für reelle Zahlen")
+        
+
+## Aufgabe 3 
+# - die Methode mit der For-SChleife ist um den Faktor 10 
+# schneller als die rekursive Methode
+#
