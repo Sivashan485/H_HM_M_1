@@ -4,7 +4,7 @@ import matplotlib.pyplot as  plt
 #  Berechnung der Koeffizienten
 import numpy as np
 
-def Name_S1_Aufg2(a, xmin, xmax):
+def Gruppe14_S1_Aufg2(a, xmin, xmax):
     # Überprüft ob das array a nicht leer ist oder nur einen Koeffizienten hat
     if a.size == 0 or a.ndim != 1:
         raise Exception('Fehler: Input array a is empty or has more than one dimension')
@@ -40,7 +40,7 @@ xmin = -5
 xmax = 5
 
 # Funktion aufrufen
-x, p, dp, pint = Name_S1_Aufg2(a, xmin, xmax)
+x, p, dp, pint = Gruppe14_S1_Aufg2(a, xmin, xmax)
 
 # Grafik erstellen 
 plt.figure(figsize=(12, 8))
