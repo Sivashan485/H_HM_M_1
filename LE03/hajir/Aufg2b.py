@@ -15,3 +15,8 @@ plt.title('Plot of g(x) over the interval [-10^-14, 10^-14]')
 plt.legend()
 plt.grid(True)
 plt.show()
+
+
+# nein, die numerische berechnung des grenzwertes ist nicht stabil, da die Maschine 
+# die Werte von x sehr klein annähert und somit die Genauigkeit der Maschine nicht 
+# ausreicht, um den Grenzwert zu berechnen.
