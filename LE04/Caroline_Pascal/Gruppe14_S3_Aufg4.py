@@ -18,17 +18,29 @@ x = np.arange(1.1, 1.3, 1e-7)
 # Calculate condition numbers
 kappa = condition_number(x)
 
+# Plot the function h(x)
+plt.figure(figsize=(10, 12))
+
+plt.subplot(2, 1, 1)
+plt.plot(x, h(x), label='h(x)', color='blue')
+plt.title('Behavior of h(x) near x = 1.1')
+plt.xlabel('x')
+plt.ylabel('h(x)')
+plt.axhline(0, color='black', linewidth=0.5, linestyle='--')
+plt.grid(True, which="both", ls="--")
+plt.legend()
+
 # Plot the condition number
-plt.figure(figsize=(10, 6))
+plt.subplot(2, 1, 2)
 plt.semilogy(x, kappa, label='Condition number of h(x)')
 plt.xlabel('x')
 plt.ylabel('Condition number (log scale)')
 plt.title('Semi-Logarithmic Plot of the Condition Number of h(x)')
 plt.grid(True, which="both", ls="--")
 plt.legend()
+
+plt.tight_layout()
 plt.show()
-
-
 
 # Antwort C
 # Die nummerische Auslöschung tritt auf, weil der Ausdruck unter der Quadratwurzel
