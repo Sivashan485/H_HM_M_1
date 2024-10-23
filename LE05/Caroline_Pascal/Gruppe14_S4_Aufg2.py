@@ -1,36 +1,49 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Fixpunktiteration basierend auf der Gleichung ki+1 = α * ki * (1 - ki)
-
-# a) Untersuchen des Konvergenzverhaltens der Fixpunktiteration
-
-def fixpunkt_iteration(alpha, k0, steps=100):
+# Define the fixed-point iteration function
+def fixed_point_iteration(alpha, k0, steps=100):
     k_values = [k0]
     for _ in range(steps):
         k_new = alpha * k_values[-1] * (1 - k_values[-1])
         k_values.append(k_new)
     return k_values
 
-# Initialer Startwert k0 = 0.1 (10% der Kinder sind erkrankt)
+# Initial value k0 = 0.1 (10% of the children are infected)
 k0 = 0.1
 
-# Untersuchen der Konvergenz für verschiedene Werte von α ∈ [0,4]
+# Investigate the convergence for different values of α ∈ [0, 4]
 alphas = np.linspace(0, 4, 100)
 steps = 100
-fixpunkte = []
+fixpoints = []
 
 for alpha in alphas:
-    k_values = fixpunkt_iteration(alpha, k0, steps)
-    fixpunkte.append(k_values[-1])
+    k_values = fixed_point_iteration(alpha, k0, steps)
+    fixpoints.append(k_values[-1])
 
-# Plotten der Ergebnisse
+# Plot the results
 plt.figure(figsize=(10, 6))
-plt.plot(alphas, fixpunkte, label="Fixpunkt")
-plt.xlabel("α (Infektionsrate)")
-plt.ylabel("Fixpunkt k")
-plt.title("Fixpunktverhalten in Abhängigkeit von der Infektionsrate α")
+plt.plot(alphas, fixpoints, label="Fixpoint")
+plt.xlabel("α (Infection rate)")
+plt.ylabel("Fixpoint k")
+plt.title("Fixpoint behavior as a function of the infection rate α")
 plt.grid(True)
-plt.axhline(0.5, color="r", linestyle="--", label="k = 0.5")
 plt.legend()
 plt.show()
+
+# (a)
+# Die Fixpunktiteration konvergiert für einen attraktiven Fixpunkt für α > 1. 
+# Für α ≤ 1 gibt es keinen attraktiven Fixpunkt.
+
+# (b)
+# Ein Fixpunkt in diesem Kontext bedeutet, dass der Anteil der infizierten Kinder 
+# stabilisiert und sich im Laufe der Zeit nicht ändert.
+# Das bedeutet, dass die Krankheit einen stabilen Zustand in der Bevölkerung erreicht hat.
+
+# (c)
+# Die Fixpunktgleichung lautet: k = α * k * (1 - k)
+# Dies vereinfacht sich zu: k = α * k - α * k^2
+# Umstellen ergibt: α * k^2 - α * k + k = 0
+# Dies ist eine quadratische Gleichung in k: k^2 - k + k/α = 0
+# Die Lösung der quadratischen Gleichung ergibt: k = 0 oder k = 1 - 1/α
+# Daher ist der Fixpunkt k = 1 - 1/α für α > 1.
