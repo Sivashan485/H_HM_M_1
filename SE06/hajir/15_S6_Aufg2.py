@@ -54,6 +54,4 @@ def gausieren(m, b):
         x[i] /= m[i][i]
         
     return x, tauschCounter
-
-    print(gausieren(m, b))
     
