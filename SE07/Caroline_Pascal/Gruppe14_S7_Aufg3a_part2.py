@@ -56,7 +56,7 @@ print("Vector b: ", b)
 
 # Solve the linear system to find polynomial coefficients using least squares
 coefficients, residuals, rank, s = np.linalg.lstsq(A, b, rcond=None)
-print("Calculated Coefficients: ", coefficients)
+print("Calculated Coefficients: a=", coefficients[0], "b=", coefficients[1], "c=", coefficients[2], "d=", coefficients[3])
 
 # Generate a fine x-axis for plotting the polynomial
 x_fine = np.arange(0, x_shifted[-1] + 1, 0.1)
