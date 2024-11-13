@@ -1,5 +1,5 @@
 import numpy as np
-from 15_S6_Aufg2 import gausieren
+import gausieren
 
 m = np.array(
     [

@@ -3,57 +3,45 @@ import numpy as np
 # Matrix A_4
 m = np.array(
     [
-        [-1, 2, 3, 2, 5, 4, 3, -1],
-        [3, 4, 2, 1, 0, 2, 3, 8],
-        [2, 7, 5, -1, 2, 1, 3, 5],
-        [3, 1, 2, 6, -3, 7, 2, -2],
-        [5, 2, 0, 8, 7, 6, 1, 3],
-        [-1, 3, 2, 3, 5, 3, 1, 4],
-        [8, 7, 3, 6, 4, 9, 7, 9],
-        [-3, 14, -2, 1, 0, -2, 10, 5],
-    ]
+        [20, 10, 0],
+        [50, 30, 20],
+        [200, 150, 100]
+    ], dtype=float
 )
 
 # Vektor b
-b = np.array([[-11], [103], [53], [-20], [95], [78], [131], [-26]])
+b = np.array([[150], [470], [2150]], dtype=float)
 
 
 def gausieren(m, b):
     tauschCounter = 0
+    n = len(m)
 
-    for i in range(0, len(m)):
-        # Spalte i
-        i = 0
-        j = i + 1
-        while [i < len(m)]:
-            # Tausche Zeilen
-            while m[j][i] != 0:
-                if j == len(m) - 1:
-                    return "Nicht reguläre Matrix"
-                j += 1
+    for i in range(n):
+        # Find the pivot row
+        max_row = i
+        for k in range(i + 1, n):
+            if abs(m[k][i]) > abs(m[max_row][i]):
+                max_row = k
 
-            m[[i, j]] = m[[j, i]]
-            b[[i, j]] = b[[j, i]]
+        # Swap the pivot row with the current row
+        if max_row != i:
+            m[[i, max_row]] = m[[max_row, i]]
+            b[[i, max_row]] = b[[max_row, i]]
             tauschCounter += 1
-            j = i + 1
 
-            # Elimination
-            for j in range(i + 1, len(m)):
-                lamda = m[i][i] / m[j][i]
-                m[j][i] = lamda * m[j][i] - m[i][i]
-                j += 1
-            i += 1
-            
+        # Eliminate the entries below the pivot
+        for k in range(i + 1, n):
+            factor = m[k][i] / m[i][i]
+            m[k][i:] -= factor * m[i][i:]
+            b[k] -= factor * b[i]
+
     # Rückwärtseinsetzen
-    x = np.zeros(len(m))
-    x[len(m) - 1] = b[len(m) - 1] / m[len(m) - 1][len(m) - 1]
-    for i in range(len(m) - 2, -1, -1):
-        x[i] = b[i]
-        for j in range(i + 1, len(m)):
-            x[i] -= m[i][j] * x[j]
-        x[i] /= m[i][i]
-        
+    x = np.zeros(n)
+    for i in range(n - 1, -1, -1):
+        x[i] = (b[i] - np.dot(m[i, i + 1:], x[i + 1:])) / m[i][i]
+
     return x, tauschCounter
 
-    print(gausieren(m, b))
-    
+
+print(gausieren(m, b))
