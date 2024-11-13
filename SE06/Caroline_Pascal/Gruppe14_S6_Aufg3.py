@@ -4,6 +4,7 @@ def gauss(A, b):
     n = len(b)
     A = np.copy(A)
     L = np.eye(n)
+    print(L)
     b_copy = np.copy(b)
     detA = 1
 
