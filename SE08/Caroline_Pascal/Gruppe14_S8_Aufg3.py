@@ -1,9 +1,6 @@
 import numpy as np
 
-def inverse_matrix(A):
-    """
-    Berechnet die Inverse einer Matrix A mit dem Gauss-Jordan-Verfahren.
-    """
+def inverse_matrix_and_errors(A, delta_b):
     n = A.shape[0]
     # Erstellen einer erweiterten Matrix [A | I]
     augmented_matrix = np.hstack((A, np.eye(n)))
@@ -25,14 +22,36 @@ def inverse_matrix(A):
     
     # Die rechte Hälfte der erweiterten Matrix ist die Inverse von A
     inverse_A = augmented_matrix[:, n:]
-    return inverse_A
+    
+    # Absoluter Fehler in x berechnen
+    delta_x = inverse_A @ delta_b
+    
+    # Relative Fehler berechnen
+    x = np.linalg.solve(A, np.ones(n))  # Berechne x für relative Fehlerberechnung
+    relative_error = np.abs(delta_x / x)
+    
+    return inverse_A, delta_x, relative_error
 
-# Beispiel
+# Beispiel mit einer 3x3-Matrix
+"""
 A = np.array([[20000, 30000, 10000], 
               [10000, 17000, 6000],
               [2000, 3000, 2000]], dtype=float)
 inverse_A = inverse_matrix(A)
+"""
+
+A = np.array([[20100, 30000, 10000], 
+              [10010, 17000, 6000],
+              [1916, 3000, 2000]], dtype=float)
+
+delta_b = np.array([100000, 100000, 100000], dtype=float)
+
+inverse_A, delta_x, relative_error = inverse_matrix_and_errors(A, delta_b)
 print("Matrix A:")
 print(A)
 print("Inverse von A:")
 print(inverse_A)
+print("Absoluter Fehler in x:")
+print(delta_x)
+print("Relativer Fehler:")
+print(relative_error)
