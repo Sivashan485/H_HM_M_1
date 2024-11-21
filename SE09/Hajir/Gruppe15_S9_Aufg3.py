@@ -30,3 +30,5 @@ plt.semilogy(ratio_values, label='dxMax / dxObs')
 plt.legend()
 plt.show()
 
+# dxMax ist eine realistische obere Schranke für dxObs in dieser Versuchsanordnung, 
+# da dxMax die theoretische obere Schranke für den relativen Fehler darstellt.

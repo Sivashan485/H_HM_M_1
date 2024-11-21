@@ -9,14 +9,12 @@ def Gruppe14_S9_Aufg2(A, A_tilde, b, b_tilde):
     #calculate the condition of A
     cond_A = np.linalg.cond(A, np.inf)
     
-    # Calculate relative error
-    rel_error = np.linalg.norm(x - x_tilde, np.inf) / np.linalg.norm(x, np.inf)
     
     # Calculate the norms
+    norm_A_tilde = np.linalg.norm(A_tilde - A, np.inf)
+    norm_b_tilde = np.linalg.norm(b_tilde - b, np.inf)
     norm_A = np.linalg.norm(A, np.inf)
     norm_b = np.linalg.norm(b, np.inf)
-    norm_A_tilde = np.linalg.norm(A_tilde, np.inf)
-    norm_b_tilde = np.linalg.norm(b_tilde, np.inf)
     
     # check the condition
     if cond_A * (norm_A_tilde / norm_A) < 1:
@@ -24,5 +22,7 @@ def Gruppe14_S9_Aufg2(A, A_tilde, b, b_tilde):
     else:
         dxmax = float('NaN')
         
+    # Calculate relative error
+    rel_error = np.linalg.norm(x - x_tilde, np.inf) / np.linalg.norm(x, np.inf)
         
     return x, x_tilde, dxmax, rel_error
