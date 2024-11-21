@@ -1,6 +1,6 @@
 import numpy as np
 
-def Name_S9_Aufg2(A, A_tilde, b, b_tilde):
+def Gruppe15_S9_Aufg2(A, A_tilde, b, b_tilde):
     # Solve the linear systems
     x = np.linalg.solve(A, b)
     x_tilde = np.linalg.solve(A_tilde, b_tilde)
