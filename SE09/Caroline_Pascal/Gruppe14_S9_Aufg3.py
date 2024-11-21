@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from Gruppe14_S9_Aufg2 import Name_S9_Aufg2 as Aufg2
+from Gruppe14_S9_Aufg2 import Gruppe14_S9_Aufg2 as Aufg2
 
 dxmax_vector = []
 dxobs_vector = []
