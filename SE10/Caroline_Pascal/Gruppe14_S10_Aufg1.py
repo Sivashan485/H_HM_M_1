@@ -12,8 +12,8 @@ A = np.array([[8,5,2], [5, 9,1], [4, 2, 7]])
 '''
 LDR decomposition of A
 '''
-D = np.diag(np.abs(A))
-D_inv = np.diag(1/D)
+D = np.diag(np.diag(A))
+D_inv = np.diag(1 / np.diag(A))
 L = np.tril(A, -1)
 R = np.triu(A, 1)
 B_norm = np.linalg.norm(-D_inv @ (L + R), np.inf)
