@@ -24,3 +24,6 @@ plt.xlabel('Iteration')
 plt.ylabel('Wert')
 plt.legend()
 plt.show()
+
+# In dieser Versuchsanordnung ist dxmax eine realistische obere Schranke für dxobs, 
+# da dxmax die theoretische obere Schranke für den relativen Fehler darstellt.
