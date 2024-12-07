@@ -12,25 +12,25 @@ import matplotlib.pyplot as plt
 
 detail = 1000                       #number of pixels in x and y direction
 maxit = 120                         #maximum n for iterations (influences how detailed the structures are shown when zooming in)
-x_min = """???"""                   #minimim value of x-interval
-x_max = """???"""                   #maximum value of x-interval
-y_min = """???"""                   #minimim vale of y-interval
-y_max ="""???"""                    #minimim vale of y-interval
+x_min = -2                          #minimim value of x-interval
+x_max = 0.7                         #maximum value of x-interval
+y_min = -1.4                        #minimim vale of y-interval
+y_max = 1.4                         #minimim vale of y-interval
 
-a = np.linspace("""???""",detail,dtype=np.float64)  #define real axis [x_min,x_max]
-b = np.linspace("""???""",detail,dtype=np.float64)  #define imaginary axis [y_min,y_max]
+a = np.linspace(x_min, x_max,detail,dtype=np.float64)  #define real axis [x_min,x_max]
+b = np.linspace(y_min, y_max,detail,dtype=np.float64)  #define imaginary axis [y_min,y_max]
 
 B = np.zeros((detail,detail))        #for color values n 
 
-[x,y] = np.meshgrid("""???""")       #to create the complex plane with the axes defined by a and b
+[x,y] = np.meshgrid(a,b)       #to create the complex plane with the axes defined by a and b
 C = np.array(x+y*1j, np.complex128)     #creating the plane
-Z = np.zeros("""???""", np.complex128)  #initial conditions (first iteration), Z has same dimension as C
+Z = np.zeros(x.shape, np.complex128)  #initial conditions (first iteration), Z has same dimension as C
 for n in np.arange(1,maxit+1):       #start iteration
-  Z = """???"""                      #calculating Z
-  expl = np.where("""???""")         #finding exploded values (i.e. with an absolute value > 2)
+  Z =  x + 1j * y                     #calculating Z
+  expl = np.where(np.abs(Z)>2)         #finding exploded values (i.e. with an absolute value > 2)
   Z[expl] = 0                        #removing from iteration
   C[expl] = 0                        #removing from plane
-  B[expl] = """???"""                #saving color value n
+  B[expl] = n               #saving color value n
 
 plt.figure(1)
 B = B/np.max(np.max(B))           #deviding by max value for correct color
