@@ -26,7 +26,7 @@ B = np.zeros((detail,detail))        #for color values n
 C = np.array(x+y*1j, np.complex128)     #creating the plane
 Z = np.zeros(x.shape, np.complex128)  #initial conditions (first iteration), Z has same dimension as C
 for n in np.arange(1,maxit+1):       #start iteration
-  Z =  x + 1j * y                     #calculating Z
+  Z = Z**2 + C                      #calculating Z
   expl = np.where(np.abs(Z)>2)         #finding exploded values (i.e. with an absolute value > 2)
   Z[expl] = 0                        #removing from iteration
   C[expl] = 0                        #removing from plane
@@ -37,3 +37,5 @@ B = B/np.max(np.max(B))           #deviding by max value for correct color
 plt.imshow(B,extent=[x_min,x_max,y_min,y_max],origin='lower',interpolation='bilinear')   #display image
 
 
+plt.colorbar()  # add a colorbar for reference
+plt.show()  # show the plot
