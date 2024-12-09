@@ -10,14 +10,20 @@ c = 16
 D = b**2 - 4*a*c
 
 # Lösungen der quadratischen Gleichung
-w1 = (-b + np.sqrt(D * 1j)) / (2*a)
-w2 = (-b - np.sqrt(D * 1j)) / (2*a)
+u1 = (-b + np.sqrt(D * 1j)) / (2*a)
+u2 = (-b - np.sqrt(D * 1j)) / (2*a)
 
 # Rücksubstitution
-z1 = np.sqrt(w1)
-z2 = -np.sqrt(w1)
-z3 = np.sqrt(w2)
-z4 = -np.sqrt(w2)
+z1 = np.sqrt(u1)
+z2 = -np.sqrt(u1)
+z3 = np.sqrt(u2)
+z4 = -np.sqrt(u2)
+
+# Lösungen ausgeben
+print("Z1: ", z1)
+print("Z2: ", z2)
+print("Z3: ", z3)
+print("Z4: ", z4)
 
 # Lösungen in der Gaußschen Zahlenebene plotten
 solutions = [z1, z2, z3, z4]
